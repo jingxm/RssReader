@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+    <!-- css -->
+{% extends "Layout.html" %}
+{% block page_title %}
+添加电影
+{% endblock %}
+
+{% block page_css %}
+    <link href="/static/css/adminAdd.css" rel="stylesheet">
+{% endblock%}
+
+{% block content %}
+<div class="adminAdd">
+  <form class="form" action="/AddMovie" method="post" name="add">
+    {{ form.hidden_tag() }}
+      <div class="">
+        <div class="container">
+
+          <h2 class="loginTitle"><b>添加电影</b></h2>
+          </hr>
+          <div class="input-group">
+            <span class="input-group-addon label-blackstyle inputSpan" id="basic-addon1">电影名称</span>
+            <input type="text" class="form-control" placeholder="电影名称" aria-describedby="basic-addon1" name="name">
+          </div>
+          <button class="btn btn-lg label-blackstyle btn-blackstyle" type="submit" id="submit-add">添加</button>
+        </div>
+      </div>
+  </form>
+{% if movie.name %}
+      
+        <div class="movieItem container">
+          <div class="col-xs-4">
+            <a href="/Information/{{ movie.name }}">
+            <img class="movieImg" src={{ movie.image }}>
+          </div>
+          <div class="movieInfo col-xs-8">
+            {% if current_user.id == 1%}
+              <div class="modifyButton">
+                <a href="/ModifyMovie/{{ movie.name }}">
+                  <button type="button" class="btn btn-danger btn-xs">修改</button>
+                </a>
+              </div>
+            {% endif %}
+            <div>
+              <h3><b>电影名：
+              <a href="/Information/{{ movie.name }}">{{ movie.name }}</a>
+              </b></h4>
+            </div>
+              
+            <span class="label label-default"><b>导演:</b></span>&nbsp;<span>{{ movie.director }}</span></br></br>
+            <span class="label label-default"><b>电影简介:</b></span>
+            <p>{{ movie.summary }}</p>
+          </div>
+        </div>
+</div>
+{% endif %}
+{% endblock %}

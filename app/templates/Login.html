@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+{% extends "Layout.html" %}
+{% block page_title %}
+登录
+{% endblock %}
+
+{% block page_css %}
+  <link href="/static/css/login.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="login">
+      <div class="container">
+        <form class="form" action="/Login" method="post" name="login">
+        {{ form.hidden_tag() }}
+          <h2 class="loginTitle"><b>登录</b></h2>
+          </hr>
+          <div class="input-group">
+            <span class="input-group-addon label-blackstyle inputSpan" id="basic-addon1">邮箱</span>
+            <input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1" name="email">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon label-blackstyle inputSpan" id="basic-addon2">密码</span>
+            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2" name="password">
+          </div>
+          <label class="checkbox">
+            <input type="checkbox" value="remember-me" name="remember_me">记住我的登录状态
+          </label>
+          <a href="{{ url_for('Regist') }}">
+          <button class="btn btn-lg label-blackstyle btn-blackstyle" type="button" id="submit-signup">注册</button>
+          </a>
+          <button class="btn btn-lg label-blackstyle btn-blackstyle" type="submit" id="submit-login">登录</button>
+          </form>
+      </div>
+    </div>
+
+{% endblock %}

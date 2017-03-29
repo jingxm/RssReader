@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends "Layout.html" %}
+
+{% block page_title %}
+注册
+{% endblock %}
+
+{% block page_css %}
+  <link href="/static/css/regist.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<form class="form" action="/Regist" method="post" name="regist">
+    {{ form.hidden_tag() }}
+    <div class="regist">
+      <div class="container">
+          <h2 class="loginTitle"><b>注册</b></h2>
+          </hr>
+          <div class="input-group">
+            <span class="input-group-addon label-blackstyle inputSpan" id="basic-addon1">用户名</span>
+            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" name="username">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon label-blackstyle inputSpan" id="basic-addon2">密码</span>
+            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2" name="password">
+          </div>
+          <div class="input-group" id="signup-part1">
+            <span class="input-group-addon label-blackstyle inputSpan" id="basic-addon3">确认密码</span>
+            <input type="password" class="form-control" placeholder="Password again" aria-describedby="basic-addon3" name="comfirm">
+          </div>
+          <div class="input-group"  id="signup-part2">
+            <span class="input-group-addon label-blackstyle inputSpan" id="basic-addon4">邮箱</span>
+            <input type="text" class="form-control" placeholder="Email address" aria-describedby="basic-addon4" name="email">
+          </div>
+          <button class="btn btn-lg label-blackstyle btn-blackstyle" type="submit" id="submit-signup">注册</button>
+          <a href="{{ url_for('Login') }}">
+          <button class="btn btn-lg label-blackstyle btn-blackstyle" type="button" id="submit-login">登录</button>
+          </a>
+
+      </div>
+    </div>
+</form>
+{% endblock %}

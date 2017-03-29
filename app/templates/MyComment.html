@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+{% extends "Layout.html" %}
+{% block page_title %}
+个人评论
+{% endblock %}
+
+{% block page_css %}
+  <link href="/static/css/MyComment.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <!--your code-->
+    <div class="comment">
+      <h1 class="listTitle"><span class="label label-default">我的电影评论</span></h1>
+      {% if comment_list %}
+        {% for comment in comment_list.items %}
+        <div class="commentItem container">
+          <div class="col-xs-4">
+              <img class="movieImg" src={{ comment.to_image()}}>
+            </div>
+            <div class="movieInfo col-xs-8">
+              <div>
+                <div class="modifyButton">
+                    <a href="/ModifyComment/{{ comment.id }}">
+                    <button type="button" class="btn btn-danger btn-xs">修改</button>
+                </div>
+                  <a href="/Information/{{ comment.to_movie() }}">
+                  <h3><b>电影名：<a>{{ comment.to_movie() }}</a></b></h4>
+                  </a>
+              </div>
+              <span class="label label-default"><b>标题：</b></span>&nbsp;<span>{{comment.title}}</span><br/><br/>
+
+              <span class="label label-default"><b>评分：</b></span>
+              <span class="vote-star"><i style="width:{{ comment.percentige() }}%"></i></span>
+                <span class="vote-number">{{ comment.rating }}分</span><br/><br/>
+              <span class="label label-default"><b>影评：</b></span>
+              <p>{{comment.content}}</p>
+            </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+      <div class="page">
+        {% if comment_list.has_prev %}<a href="{{ url_for('MyComment', page = comment_list.prev_num) }}"><< Newer comments</a>{% else %}<< Newer comments{% endif %} |
+        {% if comment_list.has_next %}<a href="{{ url_for('MyComment', page = comment_list.next_num) }}">Older comments >></a>{% else %}Older comments >>{% endif %}
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+    <!-- css -->
+{% extends "Layout.html" %}
+{% block page_title %}
+详细信息
+{% endblock %}
+
+{% block page_css %}
+    <link href="/static/css/MovieInfo.css" rel="stylesheet">
+{% endblock%}
+
+{% block content %}
+
+     <!--your code-->
+    <!-- movieInfo -->
+    <div class="movieInfo">
+      <h1 class="movieTitle"><span class="label label-default">电影详细信息</span></h1>
+      <div class="container information">
+        <div class="row">
+          <div class="col-xs-4">
+            <img class="movieImg-info" src={{movie.image}}>
+          </div>
+          <div class="col-xs-8">
+            <h2><b>电影名：{{ movie.name }}</b></h2></br>
+            <span class="info"><b>导演：{{ movie.director }}</b></span></br></br>
+            <span class="info"><b>评分：</b></span></br></br>
+            <span class="logo info"><img class="logoImg" src="/static/assets/logo1.png"> {{ movie.rating }} </span>
+            <span class="logo info"><img class="logoImg" src="/static/assets/logo2.png"> {{ movie.ret_imdb() }}</span>
+            <span class="logo info"><img class="logoImg" src="/static/assets/logo3.png"> {{ movie.ret_tomato() }}</span>
+            </br></br>
+            <span class="info"><b>主演：</b>{{ movie.actor }}</span></br></br>
+            <span class="info"><b>上映时间：</b>{{ movie.date }}</span></br>
+          </div>
+        </div>
+        </br>
+        <span class="info"><b>电影简介：</b></span>
+        <p>{{ movie.summary }}
+        </p>
+
+        <span class="info"><b>影评：</b></span></br></br>
+        <div class="comment">
+          <div>
+            <form action="" method="post">
+              {{ form.hidden_tag()}}
+              <br/>
+              <div class="container">
+                <div class="row">
+                  <div class="col-xs-1">
+                    <span class="label label-default">标题：</span>
+                  </div>
+                  <div class="col-xs-11">
+                    <input type="text" placeholder="输入标题" name="title">
+                  </div>
+                </div>
+              </div>
+
+              <hr/>
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-xs-1">
+                    <span class="label label-default">评分：</span>
+                  </div>
+                  <div class="col-xs-11">
+                    <select name="rating">
+                      <option value="none">选择评分</option>
+                      <option value="10">10</option>
+                      <option value="9">9</option>
+                      <option value="8">8</option>
+                      <option value="7">7</option>
+                      <option value="6">6</option>
+                      <option value="5">5</option>
+                      <option value="4">4</option>
+                      <option value="3">3</option>
+                      <option value="2">2</option>
+                      <option value="1">1</option>
+                      
+                      </select>
+                  </div>
+                </div>
+              </div>
+
+              <hr/>
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-xs-1">
+                    <span class="label label-default">评论：</span>
+                  </div>
+                  <div class="col-xs-11">
+                    <textarea rows="5" cols="50" name="content">写下你的评论...</textarea>
+                  </div>
+                </div>
+              </div>
+
+              <hr/>
+
+              <div class="commentButton">
+                <button type="submit" class="btn btn-default">发表</button>
+              </div>
+              <br/>
+            </form>
+          </div>
+        </div>
+
+        <span class="info"><b>所有影评：</b></span></br></br>
+        <div class="commentList">
+          <div class="commentListItem">
+            {% if comment_list %}
+            {% for comment in comment_list %}
+                <div class='showcomment'>
+                    <p class='user'>用户：{{ comment.to_user() }}</p>
+                    <p class='date'>时间：{{ comment.date }}</p>
+                    <span class="vote-star"><i style="width:{{ comment.percentige() }}%"></i></span>
+                    <span class="vote-number">{{ comment.rating }}分</span>
+                    <p class='title'>标题：{{ comment.title }}</p>
+                    <p class='content'>正文：{{ comment.content }}</p>
+                </div>
+                
+                <div style="BORDER-TOP: #d8d8d8 1px dashed; OVERFLOW: hidden; HEIGHT: 1px"></div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock%}

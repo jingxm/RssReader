@@ -1,0 +1,48 @@
+{% extends "Layout.html" %}
+{% block page_title%}
+个人设置
+{% endblock %}
+
+{% block page_css %}
+<link href="/static/css/PersonalSetting.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+    <div class="Setting">
+      <div class="avatar">
+        <img src="/static/assets/avatar.png" alt="avatar" class="img-circle avatarImg">
+      </div>
+      <div class="SettingTitle">
+        <h2><b>个人设置</b></h2>
+      </div>
+      <div class="container">
+        <form class="form-Setting" action="" method="post">
+          {{ form.hidden_tag()}}
+          <div class="input-group">
+              <span class="input-group-addon label-blackstyle inputSpan" id="basic-addon1">原始密码</span>
+              <input type="text" class="form-control" placeholder="Originalpassword" aria-describedby="basic-addon1" name="old_password">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon label-blackstyle inputSpan" id="basic-addon2">新密码</span>
+            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2" name="password1">
+          </div>
+          <div class="input-group" id="signup-part1">
+            <span class="input-group-addon label-blackstyle inputSpan" id="basic-addon3">确认密码</span>
+            <input type="password" class="form-control" placeholder="Password again" aria-describedby="basic-addon3" name="password2">
+          </div>
+          <div class="input-group"  id="signup-part2">
+            <span class="input-group-addon label-blackstyle inputSpan" id="basic-addon4">邮箱</span>
+            <input type="text" class="form-control" placeholder="Email address" aria-describedby="basic-addon4" name="email">
+          </div>
+          <div class="input-group"  id="signup-part3">
+            <span class="input-group-addon label-blackstyle inputSpan" id="basic-addon5">手机号</span>
+            <input type="text" class="form-control" placeholder="Tel number" aria-describedby="basic-addon5" name="phone">
+          </div>
+          <div class="btn-blackstyle">
+            <button class="btn btn-lg label-blackstyle" type="submit" id="submit-signup">确认保存</button>
+          </div>
+        </form>
+      </div>
+    </div>
+{% endblock %}
